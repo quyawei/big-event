@@ -5,6 +5,7 @@ $(function () {
         e.prevntDefault();
         // 获取表单输入域的用户名和密码
         var formData = $(this).serialize();
+        
         // 调用后台接口验证是否正确
         $.ajax({
             type: 'post',
