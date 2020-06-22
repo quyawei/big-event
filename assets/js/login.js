@@ -72,6 +72,7 @@ $(function () {
                     // 注册失败
                     // layer是一个独立的模块，默认可以直接使用
                     layer.msg(res.message);
+                    $('#registerForm')[0].reset();
                 }
             }
         })
