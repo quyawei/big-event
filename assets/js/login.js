@@ -52,7 +52,7 @@ $(function () {
     });
 
     // 控制注册表单的提交(表单输入域必须提供name属性，name的值必须与接口文档要求一致)
-    $('registerForm').submit(function (e) { 
+    $('#registerForm').submit(function (e) { 
         e.preventDefault();
         // 获取表单数据
         var formData = $(this).serialize();
@@ -67,6 +67,7 @@ $(function () {
                     $('#registerForm a').click();
                     // 成功后进行提示
                     layer.msg(res.message);
+
                 } else { 
                     // 注册失败
                     // layer是一个独立的模块，默认可以直接使用
