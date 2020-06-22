@@ -34,6 +34,9 @@ $(function () {
             success: function (res) {
                 // 登录成功后，跳转到主页面
                 if (res.status === 0) {
+                    // 把登录成功的标志位存储在客户端
+                    localStorage.setItem('mytoken', res.token);
+                    // 跳转到主页面
                     location.href = './index.html';
                 };
             }
