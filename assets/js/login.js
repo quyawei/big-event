@@ -65,6 +65,8 @@ $(function () {
                 if (res.status === 0) {
                     // 注册成功，显示登录框
                     $('#registerForm a').click();
+                    // 成功后进行提示
+                    layer.msg(res.message);
                 } else { 
                     // 注册失败
                     // layer是一个独立的模块，默认可以直接使用
