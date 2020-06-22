@@ -15,6 +15,14 @@ $(function () {
             if (!reg.test(value)) { 
                 return '密码必须是6位数字';
             }
+        },
+        // 验证确认密码必须和原有密码一致
+        same: function (value) { 
+            // 获取原始密码
+            var pwd = $('#registerForm input[type="password"]').val();
+            if (pwd !== value) { 
+                return '两次输入的密码必须一致';
+            };
         }
     });
 
