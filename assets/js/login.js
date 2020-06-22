@@ -18,8 +18,8 @@ $(function () {
         }
     });
 
-    // 控制表单的提交
-    $('.layui-form').submit(function (e) {
+    // 控制登录表单的提交
+    $('#loginForm').submit(function (e) {
         // 阻止表单默认提交行为
         e.preventDefault();
         // 获取表单输入域的用户名和密码
