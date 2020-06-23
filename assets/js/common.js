@@ -6,7 +6,7 @@ $.ajaxPrefilter(function (option) {
     // 形参option是jQuery请求方法的配置信息
     // 发送请求之前会触发beforeSend
     option.beforeSend = function () {
-        // 发送请求之前发送进度条
+        // 发送请求之前发送进度条(添加window防止报错)
         window.NProgress && window.NProgress.start();
         // if (NProgress) { 
         //     NProgress.start();
