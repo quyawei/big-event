@@ -10,6 +10,7 @@ $(function () {
         $.ajax({
             type: 'get',
             url: 'http://ajax.frontend.itheima.net/my/userinfo',
+            // my开头的请求都需要携带请求头，作用：权限验证(只有登录后才能访问)
             headers: {
                 Authorization: localStorage.getItem('mytoken')
             },
@@ -35,7 +36,7 @@ $(function () {
                     } else { 
                         // 头像不存在，显示div
 
-                    }
+                    };
                 };
             }
         });
