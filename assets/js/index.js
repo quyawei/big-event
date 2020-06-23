@@ -22,9 +22,19 @@ $(function () {
                     $('#welcome-username').html(info.username);
                     $('#nav-username').html(info.username);
                     // 填充头像信息
-                    if (info.user_pic) { 
-                        // 存在头像数据
-                        
+                    // info.user_pic = 'http://t.cn/RCzsdCq';
+                    if (info.user_pic) {
+                        // 存在头像数据，显示一张图片
+                        // 删除默认的头像
+                        $('#welcome-username').parent().prev('div').remove();
+                        // 添加新的头像
+                        $('#welcome-username').parent().prepend('<img src="' + info.user_pic + '" alt="" />');
+
+                        $('#nav-username').prev('div').remove();
+                        $('#nav-username').prepend('<img src="' + info.user_pic + '" alt="" />');
+                    } else { 
+                        // 头像不存在，显示div
+
                     }
                 };
             }
