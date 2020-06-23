@@ -7,7 +7,7 @@ $.ajaxPrefilter(function (option) {
     // 发送请求之前会触发beforeSend
     option.beforeSend = function () {
         // 发送请求之前发送进度条
-        NProgress && NProgress.start();
+        window.NProgress && window.NProgress.start();
         // if (NProgress) { 
         //     NProgress.start();
         // };
@@ -27,8 +27,8 @@ $.ajaxPrefilter(function (option) {
     // 服务器响应结束时触发
     option.complete = function (res) {
         // 完成请求后，结束进度条
-        NProgress && NProgress.done();
-
+        window.NProgress && window.NProgress.done();
+        
         // 处理失败的情况
         if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') { 
             // 如果身份验证失败了，就跳转到登录页
