@@ -7,7 +7,10 @@ $.ajaxPrefilter(function (option) {
     // 发送请求之前会触发beforeSend
     option.beforeSend = function () {
         // 发送请求之前发送进度条
-        NProgress.start();
+        NProgress && NProgress.start();
+        // if (NProgress) { 
+        //     NProgress.start();
+        // };
     };
 
     // 1.配置通用的URL地址
@@ -19,19 +22,19 @@ $.ajaxPrefilter(function (option) {
         option.headers = {
             Authorization: localStorage.getItem('mytoken')
         };
-        // 3.处理通用的异常情况
-        // 服务器响应结束时触发
-        option.complete = function (res) {
-            // 完成请求后，结束进度条
-            NProgress.done();
+    };
+    // 3.处理通用的异常情况
+    // 服务器响应结束时触发
+    option.complete = function (res) {
+        // 完成请求后，结束进度条
+        NProgress && NProgress.done();
 
-            // 处理失败的情况
-            if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') { 
-                // 如果身份验证失败了，就跳转到登录页
-                // 把无效token清除
-                localStorage.removeItem('mytoken');
-                location.href = './login.html';
-            };
+        // 处理失败的情况
+        if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') { 
+            // 如果身份验证失败了，就跳转到登录页
+            // 把无效token清除
+            localStorage.removeItem('mytoken');
+            location.href = './login.html';
         };
     };
 });
