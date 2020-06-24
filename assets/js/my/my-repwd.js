@@ -36,6 +36,9 @@ $(function () {
                 // 更新成功后，提示
                 if (res.status === 0) {
                     layer.msg(res.message);
+                } else { 
+                    layer.msg(res.message);
+                    $('#form')[0].reset();
                 };
             }
         });
