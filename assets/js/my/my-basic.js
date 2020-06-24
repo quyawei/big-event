@@ -9,6 +9,7 @@ $(function () {
             url: 'my/userinfo',
             success: function (res) {
                 // 把数据填充到表单
+                // $('#form input[name=id]').val(res.data.id);
                 // $('#form input[name=username]').val(res.data.username);
                 // $('#form input[name=nickname]').val(res.data.nickname);
                 // $('#form input[name=email]').val(res.data.email);
@@ -20,4 +21,32 @@ $(function () {
         });
     };
     loadUserInfo();
+
+    // 控制表单的提交
+    $('#form').submit(function (e) {
+        e.preventDefault();
+        // 1.得到的数据中不需要username，需要删除
+        // 2.需要id，id的值由隐藏域提供
+        // var fd = $(this).serialize();
+        // 此时，serializeArray的返回值是数组
+        var fd = $(this).serializeArray();
+        // 从数组中删除一个元素：先找到元素的索引，然后根据索引删除；使用数组filter方法
+        fd = fd.filter(function (item) {
+            // 属性名称不是username的被过滤出来
+            return item.name !== 'username';
+        });
+        // 调用接口实现用户基本信息的修改
+        $.ajax({
+            type: 'post',
+            url: 'my/userinfo',
+            data: fd,
+            success: function (res) { 
+                console.log(res);
+                if (res.status === 0) { 
+                    // 修改成功，提示一下即可
+                    layer.msg(res.message);
+                };
+            }
+        })
+    });
 });

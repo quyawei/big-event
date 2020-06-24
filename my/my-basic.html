@@ -15,7 +15,7 @@
         <div class="layui-card-body">
             <!-- form 表单区域 -->
             <form class="layui-form" lay-filter="basicForm" id="form">
-                <!-- 隐藏域 -->
+                <!-- 隐藏域：页面本身不显示，但是可以存储表单输入域的值 -->
                 <input type="hidden" name="id" />
                 <!-- 第一行: 登录名称 -->
                 <div class="layui-form-item">
@@ -29,7 +29,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">用户昵称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="nickname" required lay-verify="required|nickname" placeholder="请输入用户昵称"
+                        <input type="text" name="nickname" required lay-verify="required" placeholder="请输入用户昵称"
                             autocomplete="off" class="layui-input">
                     </div>
                 </div>
