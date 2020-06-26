@@ -29,7 +29,12 @@ $(function () {
                         // 删除默认的头像
                         $('#welcome-username').parent().prev('div').remove();
                         // 添加新的头像
-                        $('#welcome-username').parent().prepend('<img src="' + info.user_pic + '" alt="" />');
+                        $('#welcome-username')
+                            .parent()
+                            .find('img')
+                            .remove()
+                            .end() // 退回到上一次选择器选中的内容
+                            .prepend('<img src="' + info.user_pic + '" alt="" />');
 
                         $('#nav-username').prev('div').remove();
                         $('#nav-username').prepend('<img src="' + info.user_pic + '" alt="" />');
@@ -42,6 +47,9 @@ $(function () {
         });
     };
     loadUserInfo();
+    // 把加载用户信息的方法添加到$对象上(本质上就是jQuery插件)
+    $.loadUserInfo = loadUserInfo;
+
     // 绑定退出按钮的点击事件
     $('#logout-btn').click(function () {
         layer.confirm('确认要退出吗?', {icon: 3, title:'提示'}, function(index){
