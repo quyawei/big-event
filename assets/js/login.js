@@ -46,6 +46,10 @@ $(function () {
                     localStorage.setItem('mytoken', res.token);
                     // 跳转到主页面
                     location.href = './index.html';
+                } else {
+                    // 登录失败
+                    layer.msg(res.message);
+                    $('#loginForm')[0].reset();
                 };
             }
         });
