@@ -1,6 +1,6 @@
 $(function () {
     // 加载分类列表数据
-    function loadListData () { 
+    function loadListData() {
         $.ajax({
             type: 'get',
             url: 'my/article/cates',
@@ -27,7 +27,7 @@ $(function () {
         });
         // 监听添加分类的表单提交事件
         // $('#add-form').submit(function (e) {
-            
+
         // });
     });
 
@@ -55,7 +55,7 @@ $(function () {
     });
 
     // 监听删除按钮事件
-    $('body').on('click', '.edit', function (e) { 
+    $('body').on('click', '.del', function (e) {
         // 获取要删除的分类的id
         // var id = e.target.dataset.id;
         // var id = $(e.target).data('id');
@@ -63,17 +63,17 @@ $(function () {
         // 根据id删除分类
         $.ajax({
             type: 'get',
-            url: 'my/article/deletecate' + id,
+            url: 'my/article/deletecate/' + id,
             data: {
                 id: id
             },
-            success: function (res) { 
-                if (res.status === 0) { 
+            success: function (res) {
+                if (res.status === 0) {
                     // 删除分类成功，刷新列表
-                    layer.msg(res.message);
+                    layer.msg(res.message)
                     loadListData();
-                }
+                };
             }
-        })
-    })
+        });
+    });
 });
