@@ -22,8 +22,32 @@ $(function () {
         addIndex = layer.open({
             type: 1,
             title: '添加分类',
-            content: '<div>弹出内容</div>',
+            content: $('#add-tpl').html(),
             area: ['500px', '250px']
         });
+        // 监听添加分类的表单提交事件
+        $('#add-form').submit(function (e) {
+            // 阻止表单的默认行为
+            e.preventDefault();
+            // 获取表单数据
+            var fd = $(this).serialize();
+            $.ajax({
+                type: 'post',
+                url: 'my/article/addcates',
+                data: fd,
+                success: function (res) { 
+                    if (res.status === 0) { 
+                        // 添加分类成功，提示一下并且关闭弹出层，刷新分类列表
+                        layer.msg(res.message);
+                        // 关闭弹出层
+                        layer.close(addIndex);
+                        // 刷新分类列表
+                        loadListData();
+                    };
+                }
+            });
+        });
     });
+
+    
 });
