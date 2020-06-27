@@ -13,8 +13,8 @@
             <td>{{$value.name}}</td>
             <td>{{$value.alias}}</td>
             <td>
-                <button type="button" class="layui-btn layui-btn-xs">编辑</button>
-                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs">删除</button>
+                <button data-Id='{{$value.id}}' type="button" class="layui-btn layui-btn-xs edit">编辑</button>
+                <button data-Id='{{$value.id}}' type="button" class="layui-btn layui-btn-danger layui-btn-xs del">删除</button>
             </td>
         </tr>
         {{/each}}
