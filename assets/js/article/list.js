@@ -29,7 +29,9 @@ $(function () {
                 pagesize: 10
             },
             success: function (res) {
-                
+                // 把数据填充到模板
+                var tags = template('table-tpl', res);
+                $('.layui-table tbody').html(tags);
             }
         });
     };

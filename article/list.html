@@ -12,6 +12,20 @@
         <option value="{{$value.Id}}">{{$value.name}}</option>
         {{/each}}
     </script>
+    <script type="text/html" id="table-tpl">
+        {{each data}}
+            <tr>
+                <td>{{$value.title}}</td>
+                <td>{{$value.cate_name}}</td>
+                <td>{{$value.pub_date}}</td>
+                <td>{{$value.state}}</td>
+                <td>
+                    <button data-id="{{$value.Id}}" type="button" class="layui-btn layui-btn-xs ">编辑</button>
+                    <button data-id="{{$value.Id}}" type="button" class="layui-btn layui-btn-xs layui-btn-danger delete">删除</button>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
 </head>
 
 <body>
