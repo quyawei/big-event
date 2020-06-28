@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文章列表</title>
     <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+    <script type="text/html" id="cate-tpl">
+        <option value="">请选择分类</option>
+        {{each data}}
+        <option value="{{$value.Id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
 </head>
 
 <body>
@@ -20,7 +26,7 @@
                         <div class="layui-input-inline" style="width: 100px;">
                             <select name="cate_id" id="category" lay-verify="">
                                 <!-- 这里放分类 -->
-                                <option value="">请选择分类</option>
+                                
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width: 100px;">
