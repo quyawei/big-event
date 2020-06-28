@@ -2,6 +2,11 @@ $(function () {
     // 获取表单对象
     var form = layui.form;
 
+    // 当前页码
+    var pagenum = 1;
+    // 每页显示的条数
+    var pagesize = 10;
+
     // 补零函数
     function addZero(n) {
         return n < 10 ? '0' + n : n;
@@ -38,16 +43,11 @@ $(function () {
     loadCateData();
 
     // 获取表格列表数据
-    function loadTableData() { 
+    function loadTableData(params) { 
         $.ajax({
             type: 'get',
             url: 'my/article/list',
-            data: {
-                // 页码：必须从1开始
-                pagenum: 1,
-                // 每页显示多少条数据
-                pagesize: 10
-            },
+            data: params,
             success: function (res) {
                 // 把数据填充到模板
                 var tags = template('table-tpl', res);
@@ -55,5 +55,31 @@ $(function () {
             }
         });
     };
-    loadTableData();
+    loadTableData({
+        // 页码：必须从1开始
+        pagenum: pagenum,
+        // 每页显示多少条数据
+        pagesize: pagesize
+    });
+
+    // 搜索按钮事件绑定
+    $('#search-form').submit(function (e) {
+        e.preventDefault();
+        // 获取筛选条件的所有参数
+        var fd = $(this).serializeArray();
+        // 组合接口调用的参数
+        var params = {
+            // 页码：必须从1开始
+            pagenum: pagenum,
+            // 每页显示多少条数据
+            pagesize: pagesize
+        };
+        // 把筛选条件参数添加到param对象中
+        fd.forEach(function (item) {
+            // 向param对象中动态添加属性
+            params[item.name] = item.value;
+        });
+        // 刷新列表数据
+        loadTableData(params);
+    });
 });
