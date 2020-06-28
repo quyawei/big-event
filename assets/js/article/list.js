@@ -16,4 +16,22 @@ $(function () {
         });
     };
     loadCateData();
+
+    // 获取表格列表数据
+    function loadTableData() { 
+        $.ajax({
+            type: 'get',
+            url: 'my/article/list',
+            data: {
+                // 页码：必须从1开始
+                pagenum: 1,
+                // 每页显示多少条数据
+                pagesize: 10
+            },
+            success: function (res) {
+                
+            }
+        });
+    };
+    loadTableData();
 });
