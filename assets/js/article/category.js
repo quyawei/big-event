@@ -1,4 +1,7 @@
 $(function () {
+    // 获取表单对象
+    var form = layui.form;
+
     // 加载分类列表数据
     function loadListData() {
         $.ajax({
@@ -73,6 +76,34 @@ $(function () {
                     layer.msg(res.message)
                     loadListData();
                 };
+            }
+        });
+    });
+
+    // 编辑弹窗唯一标识
+    var editIndex = null;
+    // 监听编辑按钮事件
+    $('body').on('click', '.edit', function (e) {
+        // 获取要编辑的分类的id
+        var id = $(this).data('id');
+        // 根据id查询详细分类数据
+        $.ajax({
+            type: 'get',
+            url: 'my/article/cates/' + id,
+            data: {
+                id: id
+            },
+            success: function (res) {
+                // 显示编辑弹出层，并且填充数据
+                editIndex = layer.open({
+                    type: 1,
+                    title: '编辑分类',
+                    content: $('#edit-tpl').html(),
+                    area: ['500px', '250px']
+                });
+                // 把获取到的数据填充到表单
+                // 表单元素需要提供一个属性lay-filter="editForm"
+                form.val('editForm', res.data);
             }
         });
     });
