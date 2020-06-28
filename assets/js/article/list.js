@@ -82,4 +82,34 @@ $(function () {
         // 刷新列表数据
         loadTableData(params);
     });
+
+    // 绑定删除文章的事件
+    $('body').on('click', '.delete', function (e) {
+        // 获取要删除文章id
+        var id = $(this).data('id');
+        // 确认是否删除
+        var index = layer.confirm('确认要删除吗？', function () {
+            // 调用接口删除文章，删除完成后，关闭窗口，并且刷新列表
+            $.ajax({
+                type: 'get',
+                url: 'my/article/delete/' + id,
+                data: {
+                    id: id
+                },
+                success: function (res) {
+                    if (res.status === 0) {
+                        // 删除成功
+                        layer.close(index);
+                        // 刷新列表
+                        loadTableData({
+                            // 页码：必须从1开始
+                            pagenum: pagenum,
+                            // 每页显示多少条数据
+                            pagesize: pagesize
+                        });
+                    };
+                }
+            });
+        });
+    });
 });
