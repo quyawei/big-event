@@ -85,17 +85,35 @@ $(function () {
 
         // 生成文章封面图片
         $img
-            .cropper('getCroppedCanvas', { 
+            .cropper('getCroppedCanvas', {
                 // 创建一个 Canvas 画布
                 width: 400,
                 height: 280
             })
-            .toBlob(function (blob) { 
+            .toBlob(function (blob) {
                 // 生成一张图片，用于上传操作
                 // 在这里应该提交表单
                 // 先获取表单元素
                 var form = $('#add-form').get(0);
                 var fd = new FormData(form);
-            })
+                // 向fd当中继续添加新的数据
+                fd.append('state', state);
+                fd.append('cover_img', blob);
+                // 调用接口提交表单
+                $.ajax({
+                    type: 'post',
+                    url: 'my/article/add',
+                    data: fd,
+                    // 防止把请求参数转换为字符串
+                    processData: false,
+                    // 禁止使用默认的提交参数类型
+                    contentType: false,
+                    success: function (res) {
+                        if (res.status === 0) {
+                            layer.msg(res.message);
+                        };
+                    }
+                });
+            });
     });
 });
