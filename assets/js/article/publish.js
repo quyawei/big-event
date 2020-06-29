@@ -25,4 +25,20 @@ $(function () {
             }
         });
     });
+
+    // 动态获取分类列表数据
+    function loadListData() {
+        $.ajax({
+            type: 'get',
+            url: 'my/article/cates',
+            success: function (res) {
+                // 基于模板引擎渲染列表数据
+                var result = template('list-tpl', res);
+                $('#cate-list').html(result);
+                // layui要求调用render方法重新渲染下拉列表
+                form.render('select');
+            }
+        });
+    };
+    loadListData();
 });
