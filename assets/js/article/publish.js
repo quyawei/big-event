@@ -44,4 +44,29 @@ $(function () {
 
     // 初始化富文本编辑器
     initEditor();
+
+    // 处理文章封面的预览效果
+    var $img = $('#image');
+    var options = {
+        // 纵横比
+        aspectRatio: 400 / 280,
+        // 预览的区域
+        preview: '.img-preview'
+    };
+    $img.cropper(options);
+
+    // 控制图片的选择
+    $('#select-btn').click(function () {
+        // 弹出一个文件选择框
+        $('#cover_img').trigger('click');
+    });
+    // 获取选中的文件内容
+    $('#cover_img').change(function (e) {
+        // 得到选中的文件内容
+        var file = e.target.files[0];
+        // 基于选中的文件创建一个临时预览地址
+        var newImgURL = URL.createObjectURL(file);
+        // 更新预览区图片地址
+        $img.cropper('destroy').attr('src', newImgURL).cropper(options);
+    });
 });

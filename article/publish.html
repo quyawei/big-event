@@ -13,7 +13,7 @@
     <script type="text/html" id="list-tpl">
         <option value="">请选择文章分类</option>
         {{each data}}
-            <option value="{{$value.Id}}">{{$value.name}}</option>
+        <option value="{{$value.Id}}">{{$value.name}}</option>
         {{/each}}
     </script>
 </head>
@@ -37,7 +37,7 @@
                     <label class="layui-form-label">文章分类</label>
                     <div class="layui-input-block">
                         <select name="cate_id" lay-verify="required" id="cate-list">
-                            
+
                         </select>
                     </div>
                 </div>
@@ -51,8 +51,28 @@
                 <!-- 第四行：文章封面 -->
                 <div class="layui-form-item">
                     <label class="layui-form-label">文章封面</label>
-                    <div class="layui-input-block">
-
+                    <div class="layui-input-block cover-box">
+                        <!-- 左侧裁剪区域 -->
+                        <div class="cover-left">
+                            <img id="image" src="../assets/images/sample2.jpg" alt="" />
+                        </div>
+                        <!-- 右侧预览区域和选择封面区域 -->
+                        <div class="cover-right">
+                            <!-- 预览的区域 -->
+                            <div class="img-preview"></div>
+                            <!-- 选择封面按钮 -->
+                            <input style="display: none;" type="file" id="cover_img">
+                            <button id="select-btn" type="button" class="layui-btn layui-btn-danger">选择封面</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-block" id="submit-btn">
+                        <!-- 提交按钮 -->
+                        <button lay-submit data-type='publish' type="submit" class="layui-btn">发布</button>
+                        <button lay-submit data-type='temp' type="submit"
+                            class="layui-btn layui-btn-primary">存为草稿</button>
                     </div>
                 </div>
             </form>
