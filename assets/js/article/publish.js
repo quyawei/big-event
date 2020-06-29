@@ -2,7 +2,7 @@ $(function () {
     // 导入表单对象
     var form = layui.form;
     // 初始化下拉选框
-    form.render('select');
+    // form.render('select');
 
     // 绑定表单提交事件
     $('#add-form').submit(function (e) {
@@ -41,4 +41,7 @@ $(function () {
         });
     };
     loadListData();
+
+    // 初始化富文本编辑器
+    initEditor();
 });
