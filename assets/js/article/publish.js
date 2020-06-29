@@ -70,18 +70,21 @@ $(function () {
         $img.cropper('destroy').attr('src', newImgURL).cropper(options);
     });
 
-    // 绑定提交按钮事件
-    $('#submit-btn').on('click', '.layui-btn', function (e) {
+    // 处理提交按钮的点击行为
+    var state = '';
+    $('.layui-btn').click(function () {
         var type = $(this).data('type');
-        // 文章状态处理
-        var state = '';
         if (type === 'publish') {
-            // 发布文章
             state = '已发布';
-        } else if (type === 'temp') {
-            // 存为草稿
+        } else if (type === 'temp') { 
             state = '草稿';
-        }
+        };
+    });
+
+    // 绑定提交按钮事件
+    $('#add-form').on('submit', function (e) {
+        e.preventDefault();
+        // 文章状态处理
 
         // 生成文章封面图片
         $img
